@@ -1,0 +1,49 @@
+﻿<Window x:Class="MVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+
+    <Grid ShowGridLines="True">
+
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Center" Margin="10" FontSize="50" VerticalAlignment="Bottom">HOBBYER</TextBlock>
+        <StackPanel Grid.Row="1">
+            <Button HorizontalAlignment="Left" Margin="10" Padding="5" 
+                VerticalAlignment="Center" FontSize="15" 
+                Command="{Binding AddCommand}">Lägg till ny hobby</Button>
+        <Button HorizontalAlignment="Left" Margin="10" Padding="5" 
+        VerticalAlignment="Center" FontSize="15" 
+        Command="{Binding DeleteCommand}">Radera hobby</Button>
+        </StackPanel>
+        <ListView Grid.Row="3" HorizontalAlignment="Center" FontSize="15" 
+           ItemsSource="{Binding Hobbies}"
+           DisplayMemberPath="Name"
+           SelectedItem="{Binding SelectedHobby}">
+        </ListView>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBox Text="{Binding SelectedHobby.Name}" FontSize="15" Margin="10" Padding="5"></TextBox>
+        </StackPanel>
+
+
+
+
+
+    </Grid>
+
+
+</Window>
