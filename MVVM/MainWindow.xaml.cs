@@ -31,5 +31,7 @@ namespace MVVM
         {
             await viewModel.LoadAsync();
         }
-      }
+
+        
+    }
 }

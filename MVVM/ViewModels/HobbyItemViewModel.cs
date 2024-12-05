@@ -22,6 +22,5 @@ namespace MVVM.ViewModels
                 RaisePropertyChanged();
             }
         }
-
     }
 }

@@ -6,44 +6,53 @@
         xmlns:local="clr-namespace:MVVM"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-
-    <Grid ShowGridLines="True">
-
+    <Window.Resources>
+        <ImageBrush x:Key="ButtonImage" ImageSource="\Images\Skärmbild 2024-11-20 143132.png" />
+        <ControlTemplate x:Key="ButtonColor" TargetType="Button">
+            <Grid x:Name="DefaultButtonBackground" Background="{StaticResource ButtonImage}"/>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ButtonShape" TargetType="Button">
+            <Grid>
+                <Border CornerRadius="20" Background="white" Height="40" Width="140"/>
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid ShowGridLines="True" Background="{StaticResource ButtonImage}">
         <Grid.ColumnDefinitions>
-
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="150"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock HorizontalAlignment="Center" Margin="10" FontSize="50" VerticalAlignment="Bottom">HOBBYER</TextBlock>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" Margin="10" FontSize="50" VerticalAlignment="Bottom">HOBBYER</TextBlock>
+            <TextBox Text="{Binding SelectedHobby.Name, UpdateSourceTrigger=LostFocus}" FontSize="15" Margin="5" Padding="5"/>
+        </StackPanel>
+        
+        <StackPanel Margin="10">
+            <Label>Sök hobby</Label>
+            <TextBox Width="100" Height="25" Name="FilterTextBox" Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"></TextBox>
+        </StackPanel>
+        
         <StackPanel Grid.Row="1">
-            <Button HorizontalAlignment="Left" Margin="10" Padding="5" 
+            <Button Template="{StaticResource ButtonShape}" HorizontalAlignment="Left" Margin="10" Padding="5" 
                 VerticalAlignment="Center" FontSize="15" 
                 Command="{Binding AddCommand}">Lägg till ny hobby</Button>
-        <Button HorizontalAlignment="Left" Margin="10" Padding="5" 
+            <Button Template="{StaticResource ButtonShape}" HorizontalAlignment="Left" Margin="10" Padding="5" 
         VerticalAlignment="Center" FontSize="15" 
         Command="{Binding DeleteCommand}">Radera hobby</Button>
         </StackPanel>
-        <ListView Grid.Row="3" HorizontalAlignment="Center" FontSize="15" 
+        
+        <ListView Grid.Row="1" HorizontalAlignment="Center" FontSize="15" Margin="5"
            ItemsSource="{Binding Hobbies}"
            DisplayMemberPath="Name"
            SelectedItem="{Binding SelectedHobby}">
         </ListView>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBox Text="{Binding SelectedHobby.Name}" FontSize="15" Margin="10" Padding="5"></TextBox>
-        </StackPanel>
-
-
-
-
-
     </Grid>
-
-
 </Window>
