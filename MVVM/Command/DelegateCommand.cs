@@ -6,7 +6,6 @@ namespace MVVM.Command
     {
         private readonly Action<object?> execute;
         private readonly Func<object?, bool>? canExecute;
-
         public event EventHandler? CanExecuteChanged;
 
         public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
@@ -15,11 +14,7 @@ namespace MVVM.Command
             this.execute = execute;
             this.canExecute = canExecute;
         }
-
         public bool CanExecute(object? parameter) => canExecute == null || canExecute(parameter);
-
-
-        public void Execute(object? parameter) => execute(parameter);
-       
+        public void Execute(object? parameter) => execute(parameter);       
     }
 }

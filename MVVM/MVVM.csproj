@@ -10,11 +10,13 @@
 
   <ItemGroup>
     <None Remove="Images\beautiful-christmas-eve-concept-with-copy-space.jpg" />
+    <None Remove="Images\Skärmbild 2024-11-20 143132.png" />
     <None Remove="Images\top-view-pine-needles-mistletoe.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Images\beautiful-christmas-eve-concept-with-copy-space.jpg" />
+    <Resource Include="Images\Skärmbild 2024-11-20 143132.png" />
     <Resource Include="Images\top-view-pine-needles-mistletoe.jpg" />
   </ItemGroup>
 
