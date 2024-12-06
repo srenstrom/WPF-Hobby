@@ -5,54 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="800" Width="1000">
     <Window.Resources>
         <ImageBrush x:Key="ButtonImage" ImageSource="\Images\Skärmbild 2024-11-20 143132.png" />
-        <ControlTemplate x:Key="ButtonColor" TargetType="Button">
-            <Grid x:Name="DefaultButtonBackground" Background="{StaticResource ButtonImage}"/>
-        </ControlTemplate>
         <ControlTemplate x:Key="ButtonShape" TargetType="Button">
             <Grid>
-                <Border CornerRadius="20" Background="white" Height="40" Width="140"/>
-                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Border CornerRadius="5" Background="white" Height="25" Width="128"/>
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </ControlTemplate>
     </Window.Resources>
-    <Grid ShowGridLines="True" Background="{StaticResource ButtonImage}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <Grid.Background>
+            <StaticResource ResourceKey="ButtonImage" />
+        </Grid.Background>
+        <Viewbox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="200"/>
+                </Grid.RowDefinitions>
 
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center" Margin="10" FontSize="50" VerticalAlignment="Bottom">HOBBYER</TextBlock>
-            <TextBox Text="{Binding SelectedHobby.Name, UpdateSourceTrigger=LostFocus}" FontSize="15" Margin="5" Padding="5"/>
-        </StackPanel>
-        
-        <StackPanel Margin="10">
-            <Label>Sök hobby</Label>
-            <TextBox Width="100" Height="25" Name="FilterTextBox" Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"></TextBox>
-        </StackPanel>
-        
-        <StackPanel Grid.Row="1">
-            <Button Template="{StaticResource ButtonShape}" HorizontalAlignment="Left" Margin="10" Padding="5" 
-                VerticalAlignment="Center" FontSize="15" 
-                Command="{Binding AddCommand}">Lägg till ny hobby</Button>
-            <Button Template="{StaticResource ButtonShape}" HorizontalAlignment="Left" Margin="10" Padding="5" 
-        VerticalAlignment="Center" FontSize="15" 
-        Command="{Binding DeleteCommand}">Radera hobby</Button>
-        </StackPanel>
-        
-        <ListView Grid.Row="1" HorizontalAlignment="Center" FontSize="15" Margin="5"
-           ItemsSource="{Binding Hobbies}"
-           DisplayMemberPath="Name"
-           SelectedItem="{Binding SelectedHobby}">
-        </ListView>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label HorizontalAlignment="Center">Sök Hobby</Label>
+                    <TextBox x:Name="FilterTextBox" Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" 
+                            FontSize="10" Width="128" Height="25" />
+                    <Button Template="{StaticResource ButtonShape}" Command="{Binding AddCommand}" 
+                            FontSize="13" Margin="8">Lägg till ny hobby</Button>
+                    <Button Template="{StaticResource ButtonShape}" Command="{Binding DeleteCommand}" 
+                            FontSize="13">Radera hobby</Button>
+                </StackPanel>
+                <StackPanel Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="HOBBYER" FontSize="50"/>
+                    <TextBox Text="{Binding SelectedHobby.Name}" FontSize="15" Margin="5" Padding="5"/>
+                </StackPanel>
+                <ListView                                                        
+                          ItemsSource="{Binding Hobbies}"
+                          DisplayMemberPath="Name"
+                          SelectedItem="{Binding SelectedHobby}"
+                          FontSize="15" 
+                          Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch"/>
+            </Grid>
+        </Viewbox>
     </Grid>
 </Window>
