@@ -1,20 +1,16 @@
 ﻿using MVVM.Command;
 using MVVM.Models;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows;
-using System.Windows.Data;
-
 
 namespace MVVM.ViewModels
 {
     public class HobbyViewModel : ViewModelBase
     {     
         private ObservableCollection<HobbyItemViewModel> hobbies = new();
-        private ObservableCollection<HobbyItemViewModel> unfilteredHobbies;
+        private readonly ObservableCollection<HobbyItemViewModel> unfilteredHobbies;
         private HobbyItemViewModel selectedHobby;
         private string userInput;
+
         public DelegateCommand AddCommand { get; }
         public DelegateCommand DeleteCommand { get; }
 
@@ -88,6 +84,7 @@ namespace MVVM.ViewModels
         {
             if (Hobbies.Any())
             {
+                await Task.CompletedTask;
                 return;
             }
         }
