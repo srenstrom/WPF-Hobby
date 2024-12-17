@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1000">
     <Window.Resources>
-        <ImageBrush x:Key="ButtonImage" ImageSource="\Images\Skärmbild 2024-11-20 143132.png" />
+        <ImageBrush x:Key="BackgroundImage" ImageSource="\Images\Skärmbild 2024-11-20 143132.png" />
         <ControlTemplate x:Key="ButtonShape" TargetType="Button">
             <Grid>
                 <Border CornerRadius="5" Background="white" Height="25" Width="128"/>
@@ -17,7 +17,7 @@
     </Window.Resources>
     <Grid>
         <Grid.Background>
-            <StaticResource ResourceKey="ButtonImage" />
+            <StaticResource ResourceKey="BackgroundImage" />
         </Grid.Background>
         <Viewbox>
             <Grid>
